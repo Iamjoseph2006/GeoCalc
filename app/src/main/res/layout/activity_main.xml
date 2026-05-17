@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout principal con TabHost para GeoCalc - Áreas y Perímetros. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="GeoCalc - Áreas y Perímetros"
+        android:textColor="#1F2937"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingTop="12dp">
+
+                <ScrollView
+                    android:id="@+id/tab_square"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            style="@style/SectionTitle"
+                            android:text="Cuadrado" />
+
+                        <TextView
+                            style="@style/FieldLabel"
+                            android:text="Lado" />
+
+                        <EditText
+                            android:id="@+id/input_square_side"
+                            style="@style/NumberInput"
+                            android:hint="Ingrese el lado" />
+
+                        <Button
+                            android:id="@+id/button_square_calculate"
+                            style="@style/CalculateButton"
+                            android:text="Calcular" />
+
+                        <TextView
+                            android:id="@+id/text_square_area"
+                            style="@style/ResultText"
+                            android:text="Área: --" />
+
+                        <TextView
+                            android:id="@+id/text_square_perimeter"
+                            style="@style/ResultText"
+                            android:text="Perímetro: --" />
+                    </LinearLayout>
+                </ScrollView>
+
+                <ScrollView
+                    android:id="@+id/tab_triangle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            style="@style/SectionTitle"
+                            android:text="Triángulo" />
+
+                        <TextView
+                            style="@style/FieldLabel"
+                            android:text="Base" />
+
+                        <EditText
+                            android:id="@+id/input_triangle_base"
+                            style="@style/NumberInput"
+                            android:hint="Ingrese la base" />
+
+                        <TextView
+                            style="@style/FieldLabel"
+                            android:text="Altura" />
+
+                        <EditText
+                            android:id="@+id/input_triangle_height"
+                            style="@style/NumberInput"
+                            android:hint="Ingrese la altura" />
+
+                        <TextView
+                            style="@style/FieldLabel"
+                            android:text="Lado 2" />
+
+                        <EditText
+                            android:id="@+id/input_triangle_side2"
+                            style="@style/NumberInput"
+                            android:hint="Ingrese el lado 2" />
+
+                        <TextView
+                            style="@style/FieldLabel"
+                            android:text="Lado 3" />
+
+                        <EditText
+                            android:id="@+id/input_triangle_side3"
+                            style="@style/NumberInput"
+                            android:hint="Ingrese el lado 3" />
+
+                        <Button
+                            android:id="@+id/button_triangle_calculate"
+                            style="@style/CalculateButton"
+                            android:text="Calcular" />
+
+                        <TextView
+                            android:id="@+id/text_triangle_area"
+                            style="@style/ResultText"
+                            android:text="Área: --" />
+
+                        <TextView
+                            android:id="@+id/text_triangle_perimeter"
+                            style="@style/ResultText"
+                            android:text="Perímetro: --" />
+                    </LinearLayout>
+                </ScrollView>
+
+                <ScrollView
+                    android:id="@+id/tab_circle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            style="@style/SectionTitle"
+                            android:text="Círculo" />
+
+                        <TextView
+                            style="@style/FieldLabel"
+                            android:text="Radio" />
+
+                        <EditText
+                            android:id="@+id/input_circle_radius"
+                            style="@style/NumberInput"
+                            android:hint="Ingrese el radio" />
+
+                        <Button
+                            android:id="@+id/button_circle_calculate"
+                            style="@style/CalculateButton"
+                            android:text="Calcular" />
+
+                        <TextView
+                            android:id="@+id/text_circle_area"
+                            style="@style/ResultText"
+                            android:text="Área: --" />
+
+                        <TextView
+                            android:id="@+id/text_circle_perimeter"
+                            style="@style/ResultText"
+                            android:text="Perímetro: --" />
+                    </LinearLayout>
+                </ScrollView>
+
+                <ScrollView
+                    android:id="@+id/tab_rectangle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            style="@style/SectionTitle"
+                            android:text="Rectángulo" />
+
+                        <TextView
+                            style="@style/FieldLabel"
+                            android:text="Base" />
+
+                        <EditText
+                            android:id="@+id/input_rectangle_base"
+                            style="@style/NumberInput"
+                            android:hint="Ingrese la base" />
+
+                        <TextView
+                            style="@style/FieldLabel"
+                            android:text="Altura" />
+
+                        <EditText
+                            android:id="@+id/input_rectangle_height"
+                            style="@style/NumberInput"
+                            android:hint="Ingrese la altura" />
+
+                        <Button
+                            android:id="@+id/button_rectangle_calculate"
+                            style="@style/CalculateButton"
+                            android:text="Calcular" />
+
+                        <TextView
+                            android:id="@+id/text_rectangle_area"
+                            style="@style/ResultText"
+                            android:text="Área: --" />
+
+                        <TextView
+                            android:id="@+id/text_rectangle_perimeter"
+                            style="@style/ResultText"
+                            android:text="Perímetro: --" />
+                    </LinearLayout>
+                </ScrollView>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</LinearLayout>
