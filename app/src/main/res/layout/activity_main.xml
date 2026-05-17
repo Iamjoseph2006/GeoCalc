@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="12dp"
+            android:text="GeoCalc - Áreas y Perímetros"
+            android:textColor="#1F2937"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="16dp">
+
+            <ScrollView
+                android:id="@+id/tab_square"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cuadrado"
+                        android:textColor="#111827"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Lado"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_square_side"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese el lado"
+                        android:inputType="numberDecimal"
+                        android:minHeight="48dp"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/button_square_calculate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Calcular"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_square_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Área: --"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/text_square_perimeter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Perímetro: --"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/tab_triangle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Triángulo"
+                        android:textColor="#111827"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Base"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_triangle_base"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese la base"
+                        android:inputType="numberDecimal"
+                        android:minHeight="48dp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Altura"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_triangle_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese la altura"
+                        android:inputType="numberDecimal"
+                        android:minHeight="48dp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Lado 2"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_triangle_side_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese el segundo lado"
+                        android:inputType="numberDecimal"
+                        android:minHeight="48dp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Lado 3"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_triangle_side_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese el tercer lado"
+                        android:inputType="numberDecimal"
+                        android:minHeight="48dp"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/button_triangle_calculate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Calcular"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_triangle_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Área: --"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/text_triangle_perimeter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Perímetro: --"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/tab_circle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Círculo"
+                        android:textColor="#111827"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Radio"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_circle_radius"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese el radio"
+                        android:inputType="numberDecimal"
+                        android:minHeight="48dp"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/button_circle_calculate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Calcular"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_circle_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Área: --"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/text_circle_perimeter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Perímetro: --"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/tab_rectangle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rectángulo"
+                        android:textColor="#111827"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Base"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_rectangle_base"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese la base"
+                        android:inputType="numberDecimal"
+                        android:minHeight="48dp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Altura"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_rectangle_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese la altura"
+                        android:inputType="numberDecimal"
+                        android:minHeight="48dp"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/button_rectangle_calculate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Calcular"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_rectangle_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Área: --"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/text_rectangle_perimeter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Perímetro: --"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
+</TabHost>
