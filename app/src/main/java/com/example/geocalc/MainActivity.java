@@ -1,10 +1,16 @@
 package com.example.geocalc;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.WindowInsets;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,11 +22,17 @@ import java.util.Locale;
  */
 public class MainActivity extends Activity {
 
+    private static final int EXTRA_SAFE_TOP_DP = 18;
+    private static final int EXTRA_SAFE_BOTTOM_DP = 16;
+
+    private TabHost tabHost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        configurarZonaSegura();
         configurarPestanas();
         configurarCalculadoraCuadrado();
         configurarCalculadoraTriangulo();
@@ -29,26 +41,102 @@ public class MainActivity extends Activity {
     }
 
     /**
+     * Respeta las barras del sistema y evita que el título quede debajo del notch o la cámara.
+     */
+    private void configurarZonaSegura() {
+        View contenedorPrincipal = findViewById(R.id.main_container);
+        int paddingHorizontal = dpToPx(16);
+        int paddingTopBase = dpToPx(EXTRA_SAFE_TOP_DP);
+        int paddingBottomBase = dpToPx(EXTRA_SAFE_BOTTOM_DP);
+
+        contenedorPrincipal.setOnApplyWindowInsetsListener((view, insets) -> {
+            view.setPadding(
+                    paddingHorizontal,
+                    paddingTopBase + insets.getSystemWindowInsetTop(),
+                    paddingHorizontal,
+                    paddingBottomBase + insets.getSystemWindowInsetBottom()
+            );
+            return insets;
+        });
+        contenedorPrincipal.requestApplyInsets();
+    }
+
+    /**
      * Configura el TabHost con las cuatro figuras geométricas disponibles.
      */
     private void configurarPestanas() {
-        TabHost tabHost = findViewById(android.R.id.tabhost);
+        tabHost = findViewById(android.R.id.tabhost);
         tabHost.setup();
 
-        agregarPestana(tabHost, "cuadrado", "Cuadrado", R.id.tab_square);
-        agregarPestana(tabHost, "triangulo", "Triángulo", R.id.tab_triangle);
-        agregarPestana(tabHost, "circulo", "Círculo", R.id.tab_circle);
-        agregarPestana(tabHost, "rectangulo", "Rectángulo", R.id.tab_rectangle);
+        agregarPestana("cuadrado", "Cuadrado", R.id.tab_square);
+        agregarPestana("triangulo", "Triángulo", R.id.tab_triangle);
+        agregarPestana("circulo", "Círculo", R.id.tab_circle);
+        agregarPestana("rectangulo", "Rectángulo", R.id.tab_rectangle);
+
+        TabWidget tabWidget = tabHost.getTabWidget();
+        tabWidget.setStripEnabled(false);
+        ajustarSeparacionPestanas(tabWidget);
+        actualizarEstiloPestanas(tabHost.getCurrentTab());
+
+        tabHost.setOnTabChangedListener(tabId -> actualizarEstiloPestanas(tabHost.getCurrentTab()));
     }
 
     /**
      * Agrega una pestaña al TabHost con su etiqueta y contenido asociado.
      */
-    private void agregarPestana(TabHost tabHost, String tag, String indicador, int contenidoId) {
+    private void agregarPestana(String tag, String indicador, int contenidoId) {
         TabHost.TabSpec tabSpec = tabHost.newTabSpec(tag);
-        tabSpec.setIndicator(indicador);
+        tabSpec.setIndicator(crearIndicadorPestana(indicador));
         tabSpec.setContent(contenidoId);
         tabHost.addTab(tabSpec);
+    }
+
+    /**
+     * Crea una etiqueta compacta y legible para cada pestaña.
+     */
+    private TextView crearIndicadorPestana(String texto) {
+        TextView indicador = new TextView(this);
+        indicador.setGravity(Gravity.CENTER);
+        indicador.setSingleLine(true);
+        indicador.setIncludeFontPadding(false);
+        indicador.setMinHeight(dpToPx(42));
+        indicador.setPadding(dpToPx(6), dpToPx(10), dpToPx(6), dpToPx(10));
+        indicador.setText(texto);
+        indicador.setTextSize(12);
+        indicador.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        return indicador;
+    }
+
+    /**
+     * Da el mismo ancho a cada pestaña y agrega separación visual entre ellas.
+     */
+    private void ajustarSeparacionPestanas(TabWidget tabWidget) {
+        for (int i = 0; i < tabWidget.getChildCount(); i++) {
+            View tab = tabWidget.getChildAt(i);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, dpToPx(42), 1f);
+            params.setMargins(dpToPx(3), 0, dpToPx(3), 0);
+            tab.setLayoutParams(params);
+        }
+    }
+
+    /**
+     * Resalta la pestaña activa con el color principal de la aplicación.
+     */
+    private void actualizarEstiloPestanas(int posicionActiva) {
+        TabWidget tabWidget = tabHost.getTabWidget();
+        int colorActivo = getColor(R.color.white);
+        int colorInactivo = getColor(R.color.geocalc_primary_dark);
+
+        for (int i = 0; i < tabWidget.getChildCount(); i++) {
+            View tab = tabWidget.getChildAt(i);
+            boolean activa = i == posicionActiva;
+            tab.setBackgroundResource(activa ? R.drawable.bg_tab_active : R.drawable.bg_tab_inactive);
+
+            if (tab instanceof TextView) {
+                TextView textoTab = (TextView) tab;
+                textoTab.setTextColor(activa ? colorActivo : colorInactivo);
+            }
+        }
     }
 
     /**
@@ -180,10 +268,14 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * Muestra los resultados formateados con dos decimales en los TextViews.
+     * Muestra los resultados formateados con dos decimales y unidades.
      */
     private void mostrarResultados(TextView textArea, TextView textPerimetro, double area, double perimetro) {
-        textArea.setText(String.format(Locale.getDefault(), "Área: %.2f", area));
-        textPerimetro.setText(String.format(Locale.getDefault(), "Perímetro: %.2f", perimetro));
+        textArea.setText(String.format(Locale.getDefault(), "Área: %.2f u²", area));
+        textPerimetro.setText(String.format(Locale.getDefault(), "Perímetro: %.2f u", perimetro));
+    }
+
+    private int dpToPx(int dp) {
+        return Math.round(dp * getResources().getDisplayMetrics().density);
     }
 }

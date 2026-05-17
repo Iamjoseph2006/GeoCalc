@@ -3,337 +3,559 @@
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA">
+    android:background="@color/geocalc_background">
 
     <LinearLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingStart="16dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/text_app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="GeoCalc"
+            android:textColor="@color/geocalc_text_primary"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:gravity="center"
-            android:paddingBottom="12dp"
-            android:text="GeoCalc - Áreas y Perímetros"
-            android:textColor="#1F2937"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:text="Áreas y perímetros"
+            android:textColor="@color/geocalc_text_secondary"
+            android:textSize="14sp" />
 
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:divider="@null"
+            android:orientation="horizontal"
+            android:showDividers="none" />
 
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingTop="16dp">
+            android:layout_marginTop="14dp"
+            android:layout_weight="1">
 
             <ScrollView
                 android:id="@+id/tab_square"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:paddingBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@drawable/bg_card"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cuadrado"
-                        android:textColor="#111827"
-                        android:textSize="20sp"
+                        android:text="◼ Cuadrado"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Calcula el área y el perímetro con la medida del lado."
+                        android:textColor="@color/geocalc_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
                         android:text="Lado"
-                        android:textSize="16sp" />
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edit_square_side"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
                         android:hint="Ingrese el lado"
                         android:inputType="numberDecimal"
-                        android:minHeight="48dp"
+                        android:minHeight="52dp"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textColorHint="@color/geocalc_text_secondary"
                         android:textSize="16sp" />
 
                     <Button
                         android:id="@+id/button_square_calculate"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="54dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_button_primary"
                         android:text="Calcular"
-                        android:textSize="16sp" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/text_square_area"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Área: --"
-                        android:textSize="18sp" />
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_result"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/text_square_perimeter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Perímetro: --"
-                        android:textSize="18sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Resultados"
+                            android:textColor="@color/geocalc_primary_dark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_square_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Área: -- u²"
+                            android:textColor="@color/geocalc_text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_square_perimeter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Perímetro: -- u"
+                            android:textColor="@color/geocalc_text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 
             <ScrollView
                 android:id="@+id/tab_triangle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:paddingBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@drawable/bg_card"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Triángulo"
-                        android:textColor="#111827"
-                        android:textSize="20sp"
+                        android:text="🔺 Triángulo"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Usa base, altura y los otros dos lados para completar el cálculo."
+                        android:textColor="@color/geocalc_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
                         android:text="Base"
-                        android:textSize="16sp" />
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edit_triangle_base"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
                         android:hint="Ingrese la base"
                         android:inputType="numberDecimal"
-                        android:minHeight="48dp"
+                        android:minHeight="52dp"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textColorHint="@color/geocalc_text_secondary"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         android:text="Altura"
-                        android:textSize="16sp" />
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edit_triangle_height"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
                         android:hint="Ingrese la altura"
                         android:inputType="numberDecimal"
-                        android:minHeight="48dp"
+                        android:minHeight="52dp"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textColorHint="@color/geocalc_text_secondary"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         android:text="Lado 2"
-                        android:textSize="16sp" />
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edit_triangle_side_two"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingrese el segundo lado"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
+                        android:hint="Ingrese el lado"
                         android:inputType="numberDecimal"
-                        android:minHeight="48dp"
+                        android:minHeight="52dp"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textColorHint="@color/geocalc_text_secondary"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         android:text="Lado 3"
-                        android:textSize="16sp" />
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edit_triangle_side_three"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingrese el tercer lado"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
+                        android:hint="Ingrese el lado"
                         android:inputType="numberDecimal"
-                        android:minHeight="48dp"
+                        android:minHeight="52dp"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textColorHint="@color/geocalc_text_secondary"
                         android:textSize="16sp" />
 
                     <Button
                         android:id="@+id/button_triangle_calculate"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="54dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_button_primary"
                         android:text="Calcular"
-                        android:textSize="16sp" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/text_triangle_area"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Área: --"
-                        android:textSize="18sp" />
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_result"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/text_triangle_perimeter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Perímetro: --"
-                        android:textSize="18sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Resultados"
+                            android:textColor="@color/geocalc_primary_dark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_triangle_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Área: -- u²"
+                            android:textColor="@color/geocalc_text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_triangle_perimeter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Perímetro: -- u"
+                            android:textColor="@color/geocalc_text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 
             <ScrollView
                 android:id="@+id/tab_circle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:paddingBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@drawable/bg_card"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Círculo"
-                        android:textColor="#111827"
-                        android:textSize="20sp"
+                        android:text="⚫ Círculo"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Calcula con precisión a partir del radio."
+                        android:textColor="@color/geocalc_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
                         android:text="Radio"
-                        android:textSize="16sp" />
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edit_circle_radius"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
                         android:hint="Ingrese el radio"
                         android:inputType="numberDecimal"
-                        android:minHeight="48dp"
+                        android:minHeight="52dp"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textColorHint="@color/geocalc_text_secondary"
                         android:textSize="16sp" />
 
                     <Button
                         android:id="@+id/button_circle_calculate"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="54dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_button_primary"
                         android:text="Calcular"
-                        android:textSize="16sp" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/text_circle_area"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Área: --"
-                        android:textSize="18sp" />
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_result"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/text_circle_perimeter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Perímetro: --"
-                        android:textSize="18sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Resultados"
+                            android:textColor="@color/geocalc_primary_dark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_circle_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Área: -- u²"
+                            android:textColor="@color/geocalc_text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_circle_perimeter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Perímetro: -- u"
+                            android:textColor="@color/geocalc_text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 
             <ScrollView
                 android:id="@+id/tab_rectangle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:paddingBottom="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@drawable/bg_card"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rectángulo"
-                        android:textColor="#111827"
-                        android:textSize="20sp"
+                        android:text="▭ Rectángulo"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Ingresa base y altura para obtener ambos resultados."
+                        android:textColor="@color/geocalc_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
                         android:text="Base"
-                        android:textSize="16sp" />
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edit_rectangle_base"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
                         android:hint="Ingrese la base"
                         android:inputType="numberDecimal"
-                        android:minHeight="48dp"
+                        android:minHeight="52dp"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textColorHint="@color/geocalc_text_secondary"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         android:text="Altura"
-                        android:textSize="16sp" />
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edit_rectangle_height"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
                         android:hint="Ingrese la altura"
                         android:inputType="numberDecimal"
-                        android:minHeight="48dp"
+                        android:minHeight="52dp"
+                        android:textColor="@color/geocalc_text_primary"
+                        android:textColorHint="@color/geocalc_text_secondary"
                         android:textSize="16sp" />
 
                     <Button
                         android:id="@+id/button_rectangle_calculate"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="54dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_button_primary"
                         android:text="Calcular"
-                        android:textSize="16sp" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/text_rectangle_area"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Área: --"
-                        android:textSize="18sp" />
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_result"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/text_rectangle_perimeter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Perímetro: --"
-                        android:textSize="18sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Resultados"
+                            android:textColor="@color/geocalc_primary_dark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_rectangle_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Área: -- u²"
+                            android:textColor="@color/geocalc_text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_rectangle_perimeter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Perímetro: -- u"
+                            android:textColor="@color/geocalc_text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
         </FrameLayout>
